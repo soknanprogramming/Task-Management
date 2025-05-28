@@ -27,3 +27,24 @@ exports.registerUser = async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 }
+
+exports.loginUser = async (req, res) => {
+    try{
+        const { username, password} = req.body;
+        const checkUser = await usersModel.User.findOne({username: username, password: password});
+        if(!checkUser) return res.status(400).json({message: "username or password has wrong"});
+        if(checkUser){
+            req.session.user = {id: checkUser._id, username: checkUser.username};
+            res.status(201).json({message: `Welcome ${checkUser.username}`});
+        }
+    }
+    catch(error){
+        res.status(404).json({error: "Login is error"});
+        console.log("Login error", error);
+    }
+}
+
+exports.checkLogin = async (req, res) => {
+    if (!req.session.user) return res.status(401).send('Please login.');
+    res.status(200).send(`Hello ${req.session.user.username}, your have login.`);
+}

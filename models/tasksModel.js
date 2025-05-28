@@ -6,8 +6,8 @@ const taskSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      trim: true, // trim use for removing whitespace
-      minlength: 1, // Minimum length of 1 character
+      trim: true, 
+      minlength: 1,
     },
     completed: {
       type: Boolean,
@@ -17,7 +17,7 @@ const taskSchema = new mongoose.Schema(
       type: String,
       default: "general",
       trim: true,
-      enum: ["general", "work", "personal", "urgent"], // Restrict to specific categories
+      enum: ["general", "work", "personal", "urgent"], 
     },
     createdAt: {
       type: Date,
@@ -25,17 +25,13 @@ const taskSchema = new mongoose.Schema(
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Reference to Users collection for future authentication
-      required: false, // Optional for now
+      ref: "User",
+      required: false, 
     },
   },
   {
-    timestamps: true, // Automatically adds createdAt and updatedAt
+    timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Task", taskSchema); // "Task" is the name of the model
-// we need it because we are using it in the controllers
-// example: const Task = require("../models/tasksModel");
-// Task is the name of the model
-// and we are using it in the controllers to create, update, delete, and get tasks
+module.exports = mongoose.model("Task", taskSchema); 

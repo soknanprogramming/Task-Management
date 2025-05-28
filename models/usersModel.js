@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema(
             type: String,
             required: true,
             unique: true,
-            trim: true, // Remove whitespace
-            minlength: 3, // Minimum length of 3 characters
+            trim: true, 
+            minlength: 3, 
         },
         password: {
             type: String,
@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema(
         },
     },
     {
-        timestamps: true, // Automatically adds createdAt and updatedAt
+        timestamps: true, 
     }
 );
 
-exports.User = mongoose.model('User', userSchema); // "User" is the name of the model
+exports.User = mongoose.model('User', userSchema); 
